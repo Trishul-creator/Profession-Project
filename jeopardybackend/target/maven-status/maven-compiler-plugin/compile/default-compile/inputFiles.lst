@@ -1,0 +1,13 @@
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/JeopardyApplication.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/controller/AuthController.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/controller/GameController.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/AnswerRequest.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/AnswerResult.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/GameStartRequest.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/GameState.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/LoginRequest.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/LoginResponse.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/dto/QuestionResponse.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/model/Question.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/model/Team.java
+/Users/gurumurthyvenkataraman/Downloads/yatin_project_folder/jeopardybackend/src/main/java/com/example/jeopardy/service/GameService.java
