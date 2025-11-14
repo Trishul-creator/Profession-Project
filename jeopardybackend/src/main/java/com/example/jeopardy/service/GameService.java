@@ -3,7 +3,6 @@ package com.example.jeopardy.service;
 import com.example.jeopardy.model.Question;
 import com.example.jeopardy.model.Team;
 
-import java.text.Normalizer;
 import java.util.*;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +15,10 @@ public class GameService {
     private final Map<String, List<Question>> remainingByCategory = new HashMap<>();
     private final List<Team> teams = new ArrayList<>();
     private final Random random = new Random();
+    private final AiAnswerEvaluator answerEvaluator = new AiAnswerEvaluator();
+
+    private static final int POINTS_FOR_CORRECT = 5;
+    private static final int POINTS_FOR_INCORRECT = -1;
 
     public GameService() {
         loadQuestions();
@@ -149,32 +152,25 @@ public class GameService {
         if (q == null || userAnswer == null || teamName == null) {
             return false;
         }
-        String normalizedExpected = normalize(q.getAnswer());
-        String normalizedGiven = normalize(userAnswer);
+        boolean correct = answerEvaluator.isCorrect(q.getAnswer(), userAnswer);
 
-        boolean correct = normalizedExpected.equalsIgnoreCase(normalizedGiven)
-                || normalizedExpected.contains(normalizedGiven)
-                || normalizedGiven.contains(normalizedExpected);
+        int delta = correct ? POINTS_FOR_CORRECT : POINTS_FOR_INCORRECT;
+        adjustTeamScore(teamName, delta);
 
-        for (Team team : teams) {
-            if (team.getName().equalsIgnoreCase(teamName.trim())) {
-                int score = team.getScore();
-                if (correct) {
-                    score += 5;
-                } else {
-                    score -= 1;
-                }
-                team.setScore(score);
-                break;
-            }
-        }
         return correct;
     }
 
-    private String normalize(String s) {
-        String result = Normalizer.normalize(s, Normalizer.Form.NFD);
-        result = result.replaceAll("[^A-Za-z0-9]+", "").toLowerCase(Locale.ROOT);
-        return result;
+    private void adjustTeamScore(String teamName, int delta) {
+        if (teamName == null) {
+            return;
+        }
+        String lookupName = teamName.trim();
+        for (Team team : teams) {
+            if (team.getName().equalsIgnoreCase(lookupName)) {
+                team.setScore(team.getScore() + delta);
+                break;
+            }
+        }
     }
 
     public String getCorrectAnswer(long questionId) {
